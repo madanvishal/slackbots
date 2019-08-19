@@ -1,0 +1,3 @@
+import feedbackbotbot
+
+feedbackbotbot.FeedbackBot()
