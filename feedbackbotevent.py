@@ -38,10 +38,7 @@ class Event:
                                 if (data[1] in row_value[5] and int(row_value[7]) >= 3 and len(row_value[9]) > 100 ):
 
                                     response += "\n"
-                                    response += " Rating : "
-                                    response += str(row_value[7])
-                                    response += "\n"
-                                    response += row_value[9] 
+                                    response += """ID: {} ,  Rating: {} \n{} """.format(str(row_value[0]),str(row_value[7]),row_value[9] )
                             break
                 else:
                     consultant = "Total" 
