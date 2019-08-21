@@ -32,13 +32,14 @@ class Event:
                         if (data[1] in row_value[0]):
                             response = row_value
                             response = """{} has recieved {:0.0f} feedbacks and has an average rating of {:0.2f}""".format(consultant,response[2], response[1])
-                            response += "\n Showing the ones with more than 100 characters .. \n"
+                            response += "\nShowing the ones with more than 100 characters\n"
                             for row_num in range(1,self.sheet2.nrows):
                                 row_value = self.sheet2.row_values(row_num)
-                                if (data[1] in row_value[5] and int(row_value[7]) >= 3 and len(row_value[9]) > 100 ):
-                                    print(rownum)
-                                    response += "\n"
-                                    response += """ID: {} ,  Rating: {} \n{} """.format(str(row_value[0]),str(row_value[7]),row_value[9] )
+                                if (data[1] in row_value[5] and int(row_value[7]) >= 1 and len(row_value[9]) > 100 ):
+                                    print(row_num)
+                                    response += "\n----------------------------------------\n"
+                                    dt = datetime.fromordinal(datetime(1900, 1, 1).toordinal() + int(row_value[1]) - 2)
+                                    response += """Date: {} ,  Rating: {} \n{} """.format(dt,str(row_value[7]),row_value[9] )
                             break
                 else:
                     consultant = "Total" 
