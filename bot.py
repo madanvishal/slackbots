@@ -1,4 +1,5 @@
 import time
+import os
 from slackclient import SlackClient
 
 import event
@@ -6,7 +7,7 @@ import event
 class Bot(object):
 
     def __init__(self):
-        self.slack_client = SlackClient("xoxb-538983125493-541180241446-EdYBhuOqZmvxYR217h1TglR0")
+        self.slack_client = SlackClient(os.environ["DUPLICITYCHECKBOT_TOKEN"])
         self.bot_name = "duplicitycheckbot" # NAME OF YOUR BOT HERE
         self.bot_id = self.get_bot_id()
 

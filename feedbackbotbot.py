@@ -1,4 +1,5 @@
 import time
+import os
 from slackclient import SlackClient
 
 import feedbackbotevent
@@ -6,7 +7,7 @@ import feedbackbotevent
 class FeedbackBot(object):
 
     def __init__(self):
-        self.slack_client = SlackClient("xoxb-538983125493-725275235237-APoOKgNRFa9pgDIVoY1VMoJ6")
+        self.slack_client = SlackClient(os.environ["FEEDBACKBOT_TOKEN"])
         self.bot_name = "feedbackbot" # NAME OF YOUR BOT HERE
         self.bot_id = self.get_bot_id()
 

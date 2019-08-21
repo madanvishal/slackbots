@@ -36,7 +36,7 @@ class Event:
                             for row_num in range(1,self.sheet2.nrows):
                                 row_value = self.sheet2.row_values(row_num)
                                 if (data[1] in row_value[5] and int(row_value[7]) >= 3 and len(row_value[9]) > 100 ):
-
+                                    print(rownum)
                                     response += "\n"
                                     response += """ID: {} ,  Rating: {} \n{} """.format(str(row_value[0]),str(row_value[7]),row_value[9] )
                             break
