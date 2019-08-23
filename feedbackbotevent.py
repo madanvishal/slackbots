@@ -48,7 +48,7 @@ class Event:
                         row_value = self.sheet1.row_values(row_num)
                         if (consultant in row_value[0]):
                             response = row_value
-                            response = """As a team we have recieved {:0.0f} feedbacks and have an average rating of {:0.2f}""".format(response[2], response[1])
+                            response = """As a team we have recieved {:0.0f} feedbacks and have an average rating of {:0.2f}.""".format(response[2], response[1])
                             break 
                    
                 channel = event["channel"]
