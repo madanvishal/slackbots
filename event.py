@@ -68,9 +68,13 @@ class Event:
                         for row_num in range(1,self.sheet2.nrows):
                             row_value = self.sheet2.row_values(row_num)
                             #print(row_value[43])
-                            if (data[2] in row_value[43]):
+                            if (data[2] in row_value[34]):
                                 response = row_value
-                                dt = datetime.fromordinal(datetime(1900, 1, 1).toordinal() + int(response[0]) - 2)
+                                print("Date"+response[0])
+                                if(response[0] == "" ):
+                                    dt = "Not Submitted Yet"
+                                else:
+                                    dt = datetime.fromordinal(datetime(1900, 1, 1).toordinal() + int(response[0]) - 2)
                                 response = """Candidate {} was submitted by {} on {}""".format(response[2], response[1],dt)
                                 print("Found in Master")
                                 break
@@ -98,7 +102,10 @@ class Event:
                             #print(row_value[43])
                             if (emaildata in row_value[3]):
                                 response = row_value
-                                dt = datetime.fromordinal(datetime(1900, 1, 1).toordinal() + int(response[0]) - 2)
+                                if(row_value[0] == ""):
+                                    dt = "Not Submitted Yet"
+                                else:
+                                    dt = datetime.fromordinal(datetime(1900, 1, 1).toordinal() + int(row_value[0]) - 2)
                                 response = """Candidate {} was submitted by {} on {}""".format(response[2], response[1],dt)
                                 print("Found in Master")
                                 break
@@ -126,7 +133,10 @@ class Event:
                             #print(row_value[43])
                             if (emaildata in row_value[3]):
                                 rowvalue = row_value
-                                dt = datetime.fromordinal(datetime(1900, 1, 1).toordinal() + int(rowvalue[0]) - 2)
+                                if(rowvalue[0] == ""):
+                                    dt = "Not Submitted Yet"
+                                else:
+                                    dt = datetime.fromordinal(datetime(1900, 1, 1).toordinal() + int(rowvalue[0]) - 2)
                                 emailresponse = """Email Check: Candidate {} was submitted by {} on {}""".format(rowvalue[2], rowvalue[1],dt)
                                 print("Found in Master")
                                 emailfound = 1
@@ -147,9 +157,12 @@ class Event:
                         for row_num in range(1,self.sheet2.nrows):
                             row_value = self.sheet2.row_values(row_num)
                             #print(row_value[43])
-                            if (data[4] in row_value[43]):
+                            if (data[4] in row_value[34]):
                                 rowvalue = row_value
-                                dt = datetime.fromordinal(datetime(1900, 1, 1).toordinal() + int(rowvalue[0]) - 2)
+                                if(rowvalue[0] == ""):
+                                    dt = "Not Submitted Yet"
+                                else:
+                                    dt = datetime.fromordinal(datetime(1900, 1, 1).toordinal() + int(rowvalue[0]) - 2)
                                 phoneresponse = """ & Phone Check: Candidate {} was submitted by {} on {}""".format(rowvalue[2], rowvalue[1],dt)
                                 print("Found in Master")
                                 phonefound = 1

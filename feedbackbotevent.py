@@ -1,5 +1,7 @@
 import sys
 import xlrd
+import nltk
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from datetime import datetime
 
 
@@ -9,6 +11,16 @@ class Event:
         self.workbook1 = xlrd.open_workbook(r"How did we do as a Recruiter_.xlsx", on_demand=True)
         self.sheet1 = self.workbook1.sheet_by_name("Sheet1")
         self.sheet2 = self.workbook1.sheet_by_name("Form1")
+        self.sid = SentimentIntensityAnalyzer()
+
+    def feedbackScore(self, feedback):
+        scores = self.sid.polarity_scores(feedback)
+        if scores['compound'] == 0:
+            return 'Neutral'
+        elif scores['compound'] > 0:
+            return 'Positive'
+        else:
+            return 'Negative'
 
 
     def wait_for_event(self):
@@ -39,7 +51,7 @@ class Event:
                                     print(row_num)
                                     response += "\n----------------------------------------\n"
                                     dt = datetime.fromordinal(datetime(1900, 1, 1).toordinal() + int(row_value[1]) - 2)
-                                    response += """Date: {} ,  Rating: {} \n{} """.format(dt,str(row_value[7]),row_value[9] )
+                                    response += """Date: {} ,  Rating: {} Sentiment: {} \n{} """.format(dt,str(row_value[7]),self.feedbackScore(row_value[9]),row_value[9] )
                             break
                 else:
                     consultant = "Total" 
